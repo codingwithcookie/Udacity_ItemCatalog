@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<p>Latest Items</p>
+{% for item in items %}
+  <div class="mdl-cell mdl-cell--8-col mdl-cell--6-col-desktop mdl-card mdl-shadow--2dp card-song">
+    <div class="mdl-card__title">
+      <a href="/item/{{item.id}}"><h3 class="mdl-card__title-text">{{item.name}}</h3></a>
+    </div>
+    <div class="mdl-card__supporting-text">{{item.description}}</div>
+    {% if WebPage.isLoggedIn %}
+    <div class="mdl-card__actions mdl-card--border">
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/item/edit/{{item.id}}">Edit</a>
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/item/delete/{{item.id}}">Delete</a>
+    </div>
+    {% endif %}
+  </div>
+{% endfor %}
+{% endblock content %}

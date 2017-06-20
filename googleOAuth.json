@@ -1,0 +1,19 @@
+{
+    "web": {
+        "client_id": "883950312767-e874mcg70df4bdlo6j5noea54mevlags.apps.googleusercontent.com",
+        "project_id": "udacity-multi-user-blog",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://accounts.google.com/o/oauth2/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": "406F7uNVkaNVMOcdQg4sir-m",
+        "redirect_uris": [
+            "http://localhost:8000",
+            "http://localhost:8000/item",
+            "http://localhost:8000/item/add",
+            "http://localhost:8000/item/edit"
+        ],
+        "javascript_origins": [
+            "http://localhost:8000"
+        ]
+    }
+}
