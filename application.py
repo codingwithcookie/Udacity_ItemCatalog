@@ -55,6 +55,19 @@ def json_response():
     return jsonify(jsonitems)
 
 
+@app.route('/json/<int:itemid>')
+def json_item_response(itemid):
+    jsonitems = []
+    repo = Repository()
+    item = repo.getItemById(itemid)
+    jsonitems.append(
+        {'id': item.id,
+         'name': item.name,
+         'description': item.description,
+         'category': item.categoryid})
+    return jsonify(jsonitems)
+
+
 @app.route('/login')
 def login_page():
     state = ''.join(random.choice(ascii_uppercase + digits)
@@ -200,7 +213,8 @@ def post_add_item():
         repo.addItemToDatabase(
             request.form['name'],
             request.form['description'],
-            request.form['category'])
+            request.form['category'],
+            login_session['username'])
         return redirect('/')
     return render_template('additem.html', WebPage=webPage)
 
@@ -224,9 +238,10 @@ def post_edit_item():
         repo = Repository()
         itemid = request.form['itemid']
         item = repo.getItemById(itemid)
-        item.name = request.form['name']
-        item.description = request.form['description']
-        item.categoryid = request.form['category']
+        if item.user == login_session['username']:
+            item.name = request.form['name']
+            item.description = request.form['description']
+            item.categoryid = request.form['category']
         return redirect('/')
     return render_template('additem.html', WebPage=webPage)
 
@@ -237,7 +252,8 @@ def delete_item_page(itemid):
     repo = Repository()
     item = repo.getItemById(itemid)
     if webPage.isLoggedIn:
-        repo.deleteFromDatabase(item)
+        if item.user == login_session['username']:
+            repo.deleteFromDatabase(item)
     return redirect('/')
 
 
