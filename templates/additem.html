@@ -1,4 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
-<p>Item</p>
+<p>Add new Item</p>
+<form method="post" action="/item/postadd">
+<div class="row">
+    <div class="col-md-3">
+        <label>Name:</label>
+    </div>
+    <div class="col-md-9">
+        <input name="name" />
+    </div>
+</div>    
+<div class="row">    
+    <div class="col-md-3">
+        <label>Description:</label>
+    </div>
+    <div class="col-md-9">
+        <textarea name="description" rows="4" cols="50">
+        </textarea>    
+    </div>
+</div>    
+<div class="row">    
+    <div class="col-md-3">
+        <label>Category:</label>
+    </div>
+    <div class="col-md-9">
+        <input name="category" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <input type="submit" />
+    </div>
+</div>        
+
+</form>
 {% endblock content %}

@@ -14,6 +14,12 @@ class Repository:
     def getItemById(self, item_id):
         return session.query(Item).get(item_id)
 
+    def addItemToDatabase(self, name, description, categoryid):
+        item = Item(name=name, description=description, categoryid=categoryid)
+        session.add(item)
+        session.commit()
+        return
+
     def addToDatabase(self, new_or_updated_object):
         session.add(new_or_updated_object)
         session.commit()
